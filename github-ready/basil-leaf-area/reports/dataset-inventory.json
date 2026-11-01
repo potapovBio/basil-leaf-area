@@ -1,0 +1,26 @@
+{
+  "basil": {
+    "train": {
+      "labels": 460,
+      "objects": 1041,
+      "paired_images": 460
+    },
+    "validation": {
+      "labels": 188,
+      "objects": 426,
+      "paired_images": 188
+    }
+  },
+  "cubes": {
+    "train": {
+      "labels": 86,
+      "objects": 116,
+      "paired_images": 86
+    },
+    "validation": {
+      "labels": 9,
+      "objects": 12,
+      "paired_images": 9
+    }
+  }
+}

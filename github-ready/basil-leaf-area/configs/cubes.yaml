@@ -1,0 +1,5 @@
+path: data/cubes
+train: train/images
+val: validation/images
+names:
+  0: Area

@@ -1,0 +1,5 @@
+path: data/basil
+train: train/images
+val: validation/images
+names:
+  0: Leaf
