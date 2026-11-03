@@ -14,18 +14,18 @@ Two research stages: **Ocimum basilicum** at a fixed camera distance and a cube 
 
 ## Research
 
-**Author: G. A. Potapov · ITMO University.**
+**I am G. A. Potapov, ITMO University.**
 
-As a plant grows toward the camera, image scale changes. This project combines instance segmentation with spatial calibration to estimate visible projected area.
+As a plant grows toward the camera, image scale changes. In this project, I combine instance segmentation with spatial calibration to estimate visible projected area.
 
 1. **Basil leaves:** segmentation and pixel-to-cm² conversion at a fixed distance, using a calibrated 13 × 10 cm field of view.
 2. **Cube tower:** a separately trained model and a microcontroller setup for investigating distance compensation. The abstracts describe an ESP-8266 and HC-SR04 ultrasonic sensor. Long-term validation on growing basil remains future work.
 
-The author confirms that **YOLO11-seg** was trained for this research, consistent with both abstracts. Archived notebooks and training arguments retain references to YOLOv8m-seg and are preserved as historical materials. The two stages are separate training experiments; sequential fine-tuning of a single model is not established.
+I trained **YOLO11-seg** for this research, as described in both abstracts. Archived notebooks and training arguments retain references to YOLOv8m-seg ; I preserve these files as historical materials. The two stages are separate training experiments; sequential fine-tuning of a single model is not established.
 
 ## Publications
 
-Two author-provided abstracts, described by the author as published:
+I published two abstracts based on this work:
 
 - [Model system for measuring the leaf surface area of growing basil based on YOLO11](docs/publications/basil-model-system.pdf).
 - [Model system for adaptive measurement of the leaf surface area of growing basil based on YOLO11](docs/publications/basil-adaptive-system.pdf).
@@ -51,9 +51,9 @@ Mask metrics from the last recorded CSV row:
 | mAP@0.50 | 0.99500 | 0.99500 |
 | mAP@0.50:0.95 | 0.98614 | 0.97986 |
 
-Sources: [basil CSV](reports/basil/results.csv), [cubes CSV](reports/cubes/results.csv). These rows have not been linked to the best checkpoints. mAP measures segmentation quality; it does not quantify area error in cm². Independent area MAE/RMSE and numerical distance-compensation error are unavailable.
+Sources: [basil CSV](reports/basil/results.csv), [cubes CSV](reports/cubes/results.csv). I have not verified which epochs correspond to the best checkpoints. mAP measures segmentation quality; it does not quantify area error in cm². Independent area MAE/RMSE and numerical distance-compensation error are unavailable.
 
-The research model is **YOLO11-seg**, as confirmed by the author. Archived file settings: imgsz=640, batch=8, patience=200, planned epochs=25/50. The abstracts instead describe YOLO11-seg, 17 epochs, batch=16 and patience=50.
+I used **YOLO11-seg** in this research. Archived file settings: imgsz=640, batch=8, patience=200, planned epochs=25/50. The abstracts instead describe YOLO11-seg, 17 epochs, batch=16 and patience=50.
 
 ## Data
 
@@ -66,7 +66,7 @@ Local inventory of annotation files with matching images:
 | Cubes (`Area`) | train | 86 | 116 |
 | Cubes (`Area`) | validation | 9 | 12 |
 
-This inventory does not establish the dataset composition at publication time; the abstracts mention 500 basil images. Full datasets and model weights are stored separately. No independent test split is claimed. Scene/plant-level separation needs verification.
+This inventory does not establish the dataset composition at publication time; the abstracts mention 500 basil images. I store the full datasets and model weights separately. I do not claim an independent test split here. Scene/plant-level separation needs verification.
 
 ## Run
 
@@ -91,10 +91,10 @@ python train.py --stage basil --data configs/basil.yaml
 python train.py --stage cubes --data configs/cubes.yaml
 ```
 
-For YOLO11 training, pass `--model` with the required YOLO11-seg initial weights. Without that option, the scripts retain the archived `yolov8m-seg.pt` default; an initial download may be required. New entry-point scripts were prepared for this package. Full neural inference and retraining have not been executed in the packaging environment.
+For YOLO11 training, pass `--model` with the required YOLO11-seg initial weights. Without that option, the scripts retain the archived `yolov8m-seg.pt` default; an initial download may be required. I prepared new entry-point scripts for this package. I have not run full neural inference or retraining in the packaging environment.
 
 ## Limits and provenance
 
 Only visible projected areas are measured. Occlusion, curved leaves, camera changes and objects at different depths limit interpretation. A sum of mask areas can double-count overlapping projections.
 
-Original notebooks, CSV logs and sanitized training arguments are included. Firmware, wiring diagrams and synchronized distance records were not found. The original CVAT checkout and third-party COCO converter were excluded; converter credit belongs to [Koldim2001/COCO_to_YOLOv8](https://github.com/Koldim2001/COCO_to_YOLOv8). No license has yet been selected for the author's code, images, data or weights.
+I included original notebooks, CSV logs and training arguments with portable paths. I could not find firmware, wiring diagrams or synchronized distance records in the available source files. I excluded the original CVAT checkout and third-party COCO converter; converter credit belongs to [Koldim2001/COCO_to_YOLOv8](https://github.com/Koldim2001/COCO_to_YOLOv8). I have not yet selected a license for my code, images, data or weights.
