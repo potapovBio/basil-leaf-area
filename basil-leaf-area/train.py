@@ -1,4 +1,4 @@
-"""Portable entry point for the two archived training configurations."""
+"""Train the basil or model-system segmentation model with explicitly selected initial weights."""
 import argparse
 from pathlib import Path
 
@@ -7,7 +7,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--stage', choices=['basil', 'cubes'], required=True)
     p.add_argument('--data', type=Path, help='YOLO-seg dataset YAML; overrides stage config')
-    p.add_argument('--model', default='yolov8m-seg.pt')
+    p.add_argument('--model', required=True, help='YOLO11-seg initial weights: local path or model name')
     p.add_argument('--epochs', type=int)
     p.add_argument('--device', default='cpu')
     a = p.parse_args()
